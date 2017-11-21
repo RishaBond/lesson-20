@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Title</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+                <source src="video/MP4/Love-Coding.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                <source src="video/WEBM/Love-Coding.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+                <img src="video/Snapshots/Love-Coding.jpg" alt="">
+            </div>
+        </div>
+        <div class="container header-content">
+            <div class="row">
+                <div class="title">
+                    <p class="p_up">Content description</p>
+                    <h2 class="h2">See the world through our product </h2>
+                    <h3 class="h3">Get The Most Converstion Rate Easily</h3>
+                </div>
+            </div>
+            <div class="row">
+                <a href="#"><img class="header-content_button-play" src="img/play.png" alt=""></a>
+            </div>
+            <div class="row">
+                <form action="#" class="form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="text" placeholder="Email Address">
+                    <button class="form-button" type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="row">
+                <p class="header-content_bottom">* We don't share your personal <br> info with anyone Check out our <span>Policy</span> & for more information <span>Contact Us</span>.</p>
+            </div>
+        </div>
+    </header>
+    <section class="section-nav">
+        <div class="container">
+            <div class="row">
+                <div class="nav-menu">
+                    <nav>
+                        <img src="img/logo.png" width="65" height="31" alt="logo" class="logo">
+                        <ul class="nav__list">
+                            <li class="nav__item">service</li>
+                            <li class="nav__item">about</li>
+                            <li class="nav__item">portfolio</li>
+                            <li class="nav__item">team</li>
+                            <li class="nav__item">pricing</li>
+                            <li class="nav__item">testimonial</li>
+                        </ul>
+                    </nav>
+                    <div class="social">
+                        <img class="social__item" src="img/facebook.png" alt="facebook">
+                        <img class="social__item" src="img/twit.png" alt="twitter">
+                        <img class="social__item" src="img/dots.png" alt="ets">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-smile">
+        <img class="smile_img" src="img/smail.png" alt="smail">
+        <p class="p_up">product features</p>
+        <h1 class="h1">What we <span>do</span></h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 smile__items">
+                    <div class="smile__items_img">
+                        <img src="img/responsive.png" alt="">
+                    </div>
+                    <h2 class="h2">Fully Responsive</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos nam recusandae ut vel.</p>
+                </div>
+                <div class="col-md-4 smile__items">
+                    <div class="smile__items_img">
+                        <img src="img/custimize.png" alt="">
+                    </div>
+                    <h2 class="h2">Easy to Customize</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos nam recusandae ut vel.</p>
+                </div>
+                <div class="col-md-4 smile__items">
+                    <div class="smile__items_img">
+                        <img src="img/support.png" alt="">
+                    </div>
+                    <h2 class="h2">Direct Support</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos nam recusandae ut vel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="js/scripts.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            scaleVideoContainer();
+
+            initBannerVideoSize('.video-container .poster img');
+            initBannerVideoSize('.video-container .filter');
+            initBannerVideoSize('.video-container video');
+
+            $(window).on('resize', function() {
+                scaleVideoContainer();
+                scaleBannerVideoSize('.video-container .poster img');
+                scaleBannerVideoSize('.video-container .filter');
+                scaleBannerVideoSize('.video-container video');
+            });
+        });
+        function scaleVideoContainer() {
+            var height = $(window).height() + 5;
+            var unitHeight = parseInt(height) + 'px';
+            $('.homepage-hero-module').css('height',unitHeight);
+        }
+        function initBannerVideoSize(element){
+            $(element).each(function(){
+                $(this).data('height', $(this).height());
+                $(this).data('width', $(this).width());
+            });
+
+            scaleBannerVideoSize(element);
+        }
+        function scaleBannerVideoSize(element){
+            var windowWidth = $(window).width(),
+                windowHeight = $(window).height() + 5,
+                videoWidth,
+                videoHeight;
+
+            // console.log(windowHeight);
+
+            $(element).each(function(){
+                var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+                $(this).width(windowWidth);
+
+                if(windowWidth < 1000){
+                    videoHeight = windowHeight;
+                    videoWidth = videoHeight / videoAspectRatio;
+                    $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+                    $(this).width(videoWidth).height(videoHeight);
+                }
+
+                $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+            });
+        }
+
+    </script>
+</body>
+</html>
